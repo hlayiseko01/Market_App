@@ -43,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
     $email = sanitize_input($_POST['email']);
     $password = $_POST['new_password'];
     $confirm_password = $_POST['confirm_password'];
+    $city = sanitize_input($_POST['city']);
+    $suburb = sanitize_input($_POST['suburb']);
 
     if ($password !== $confirm_password) {
         $error = "Passwords do not match";
@@ -57,9 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             $error = "Username or email already exists";
         } else {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $insert_sql = "INSERT INTO advertisers (username, email, password) VALUES (?, ?, ?)";
+            $insert_sql = "INSERT INTO advertisers (username, email, password, city, suburb) VALUES (?, ?, ?, ?, ?)";
             $insert_stmt = mysqli_prepare($conn, $insert_sql);
-            mysqli_stmt_bind_param($insert_stmt, "sss", $username, $email, $hashed_password);
+            mysqli_stmt_bind_param($insert_stmt, "sssss", $username, $email, $hashed_password, $city, $suburb);
 
             if (mysqli_stmt_execute($insert_stmt)) {
                 $success = "Registration successful. You can now log in.";
@@ -101,11 +103,14 @@ if (!empty($success)) echo "<p class='success'>$success</p>";
         <form action="" method="POST">
             <input type="text" name="new_username" placeholder="Username" required>
             <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="city" placeholder="City" required>
+            <input type="text" name="suburb" placeholder="Suburb" required>
             <input type="password" name="new_password" placeholder="Password" required>
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
             <button type="submit" name="register">Register</button>
         </form>
     </div>
+
 </div>
 <script src="../js/script.js" defer></script>
 </body>

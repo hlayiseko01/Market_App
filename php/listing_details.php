@@ -24,22 +24,24 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 $listing_id = intval($_GET['id']);
 
 // Fetch the listing details
-$sql = "SELECT l.*, a.username as advertiser_name 
+$sql = "SELECT l.*, a.username as advertiser_name, a.city, a.suburb
         FROM listings l 
         JOIN advertisers a ON l.user_id = a.id 
         WHERE l.id = ?";
+
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "i", $listing_id);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
 if ($listing = mysqli_fetch_assoc($result)) {
-    // Listing found
+    // Listing found, you can now access $listing['city'] and $listing['suburb']
 } else {
     // Listing not found
     header("Location: ../index.php");
     exit();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -69,6 +71,7 @@ if ($listing = mysqli_fetch_assoc($result)) {
     <p class="price">Price: $<?php echo number_format($listing['price'], 2); ?></p>
     <p class="category">Category: <?php echo htmlspecialchars(ucfirst($listing['category'])); ?></p>
     <p class="advertiser">Posted by: <?php echo htmlspecialchars($listing['advertiser_name']); ?></p>
+    <p class="location">Location: <?php echo htmlspecialchars($listing['city'] . ', ' . $listing['suburb']); ?></p>
     <p class="description"><?php echo nl2br(htmlspecialchars($listing['description'])); ?></p>
     <p class="date">Posted on: <?php echo date('F j, Y', strtotime($listing['created_at'])); ?></p>
 

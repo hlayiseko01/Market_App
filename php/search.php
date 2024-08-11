@@ -2,20 +2,30 @@
 include 'config.php';
 include 'functions.php';
 
+// Sanitize input
 $query = isset($_GET['query']) ? sanitize_input($_GET['query']) : '';
 $category = isset($_GET['category']) ? sanitize_input($_GET['category']) : '';
+$city = isset($_GET['city']) ? sanitize_input($_GET['city']) : '';
 
-$sql = "SELECT * FROM listings WHERE 1=1";
+// Start building the SQL query
+$sql = "SELECT l.*, a.city 
+        FROM listings l 
+        JOIN advertisers a ON l.user_id = a.id 
+        WHERE 1=1";
 
 if (!empty($query)) {
-    $sql .= " AND (title LIKE '%$query%' OR description LIKE '%$query%')";
+    $sql .= " AND (l.title LIKE '%$query%' OR l.description LIKE '%$query%')";
 }
 
 if (!empty($category) && in_array($category, ['products', 'services', 'rentals'])) {
-    $sql .= " AND category = '$category'";
+    $sql .= " AND l.category = '$category'";
 }
 
-$sql .= " ORDER BY created_at DESC";
+if (!empty($city)) {
+    $sql .= " AND a.city = '$city'";
+}
+
+$sql .= " ORDER BY l.created_at DESC";
 
 $result = mysqli_query($conn, $sql);
 $listings = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -31,14 +41,11 @@ $listings = mysqli_fetch_all($result, MYSQLI_ASSOC);
 </head>
 <body>
 <header>
-
     <nav>
-
-            <a href="../index.php">Home</a>
-            <a href="../category_listings.php?category=products">Products</a>
-            <a href="../category_listings.php?category=services">Services</a>
-            <a href="../category_listings.php?category=rentals">Rentals</a>
-
+        <a href="../index.php">Home</a>
+        <a href="../category_listings.php?category=products">Products</a>
+        <a href="../category_listings.php?category=services">Services</a>
+        <a href="../category_listings.php?category=rentals">Rentals</a>
     </nav>
 </header>
 
@@ -53,6 +60,12 @@ $listings = mysqli_fetch_all($result, MYSQLI_ASSOC);
             <option value="services" <?php echo $category == 'services' ? 'selected' : ''; ?>>Services</option>
             <option value="rentals" <?php echo $category == 'rentals' ? 'selected' : ''; ?>>Rentals</option>
         </select>
+        <select name="city">
+            <option value="">All Cities</option>
+            <option value="City1" <?php echo $city == 'City1' ? 'selected' : ''; ?>>City1</option>
+            <option value="City2" <?php echo $city == 'City2' ? 'selected' : ''; ?>>City2</option>
+            <!-- Add more cities as needed -->
+        </select>
         <button type="submit">Search</button>
     </form>
 
@@ -66,6 +79,7 @@ $listings = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <h2><?php echo htmlspecialchars($listing['title']); ?></h2>
                     <p><?php echo htmlspecialchars(substr($listing['description'], 0, 100)) . '...'; ?></p>
                     <p class="price">R<?php echo number_format($listing['price'], 2); ?></p>
+                    <p class="location">Location: <?php echo htmlspecialchars($listing['city']); ?></p>
                     <a href="./listing_details.php?id=<?php echo $listing['id']; ?>">View Details</a>
                 </div>
             <?php endforeach; ?>
