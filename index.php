@@ -40,7 +40,7 @@ $city = isset($_GET['city']) ? sanitize_input($_GET['city']) : '';
         </select>
         <select name="city">
             <option value="">All Cities</option>
-            <option value="City1" <?php echo $city == 'City1' ? 'selected' : ''; ?>>City1</option>
+            <option value="Tzaneen" <?php echo $city == 'Tzaneen' ? 'selected' : ''; ?>>Tzaneen</option>
             <option value="City2" <?php echo $city == 'City2' ? 'selected' : ''; ?>>City2</option>
             <!-- Add more cities as needed -->
         </select>

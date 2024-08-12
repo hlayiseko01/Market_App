@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $upload_file = $upload_dir . $newname;
 
             if (move_uploaded_file($_FILES['image']['tmp_name'], $upload_file)) {
-                $image_path = "images/uploads/" . $newname;
+                $image_path = "../images/uploads/" . $newname;
             } else {
                 $error = "Failed to upload image.";
             }
@@ -69,10 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <header>
     <h1>Create New Listing</h1>
     <nav>
-        <ul>
-            <li><a href="../index.php">Home</a></li>
-            <li><a href="../advertiser_dashboard.php">Dashboard</a></li>
-        </ul>
+
+            <a href="../index.php">Home</a>
+            <a href="../advertiser_dashboard.php">Dashboard</a>
+
     </nav>
 </header>
 
