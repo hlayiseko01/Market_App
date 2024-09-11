@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $message
 
         ---
-        This message was sent via Your Marketplace App.
+        This message was sent via SOS-MarketPlace.
         ";
 
         // Email headers
