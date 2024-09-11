@@ -91,7 +91,7 @@ if ($listing = mysqli_fetch_assoc($result)) {
 </main>
 
 <footer>
-    <p>&copy; 2024 Your Marketplace App</p>
+    <p>&copy; 2024 SOS-MarketPlace</p>
 </footer>
 
 <script src="../js/main.js"></script>

@@ -88,7 +88,7 @@ $listings = mysqli_fetch_all($result, MYSQLI_ASSOC);
 </main>
 
 <footer>
-    <p>&copy; 2024 Your Marketplace App</p>
+    <p>&copy; 2024 SOS-MarketPlace</p>
 </footer>
 </body>
 </html>
