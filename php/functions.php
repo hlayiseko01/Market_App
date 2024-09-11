@@ -5,7 +5,7 @@ function sanitize_input($data) {
 }
 
 
-function get_listings($category, $limit = 10) {
+function get_listings($category, $limit = 100) {
     global $conn;
     $category = sanitize_input($category);
     $sql = "SELECT * FROM listings WHERE category = '$category' ORDER BY created_at DESC LIMIT $limit";

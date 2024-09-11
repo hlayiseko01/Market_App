@@ -29,7 +29,7 @@ $listings = get_listings('services');
 </header>
 
 <main>
-    <h2>Service Listings</h2>
+    <h2>Services</h2>
     <?php if (empty($listings)): ?>
         <p>No service listings found.</p>
     <?php else: ?>

@@ -68,7 +68,7 @@ if ($listing = mysqli_fetch_assoc($result)) {
 <main class="listing-details">
     <h2><?php echo htmlspecialchars($listing['title']); ?></h2>
     <img src="../<?php echo htmlspecialchars($listing['image_path']); ?>" alt="<?php echo htmlspecialchars($listing['title']); ?>">
-    <p class="price">Price: $<?php echo number_format($listing['price'], 2); ?></p>
+    <p class="price">Price: R<?php echo number_format($listing['price'], 2); ?></p>
     <p class="category">Category: <?php echo htmlspecialchars(ucfirst($listing['category'])); ?></p>
     <p class="advertiser">Posted by: <?php echo htmlspecialchars($listing['advertiser_name']); ?></p>
     <p class="location">Location: <?php echo htmlspecialchars($listing['city'] . ', ' . $listing['suburb']); ?></p>

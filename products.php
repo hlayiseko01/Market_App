@@ -29,7 +29,7 @@ $listings = get_listings('products');
 </header>
 
 <main>
-    <h2>Product Listings</h2>
+    <h2>Products </h2>
     <?php if (empty($listings)): ?>
         <p>No product listings found.</p>
     <?php else: ?>
@@ -48,7 +48,7 @@ $listings = get_listings('products');
 </main>
 
 <footer>
-    <p>&copy; 2024 Your Marketplace App</p>
+    <p>&copy; 2024 SOS-MarketPlace</p>
 </footer>
 
 <script src="js/main.js"></script>

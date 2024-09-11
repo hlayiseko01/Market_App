@@ -29,7 +29,7 @@ $listings = get_listings('rentals');
 </header>
 
 <main>
-    <h2>Rental Listings</h2>
+    <h2>Rentals</h2>
     <?php if (empty($listings)): ?>
         <p>No rental listings found.</p>
     <?php else: ?>
@@ -48,7 +48,7 @@ $listings = get_listings('rentals');
 </main>
 
 <footer>
-    <p>&copy; 2024 Your Marketplace App</p>
+    <p>&copy; 2024 SOS-MarketPlace</p>
 </footer>
 
 <script src="js/main.js"></script>

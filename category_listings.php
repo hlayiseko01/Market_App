@@ -77,7 +77,7 @@ $conn->close();
 </main>
 
 <footer>
-    <p>&copy; 2024 Your Marketplace App</p>
+    <p>&copy; 2024 SOS-MarketPlace</p>
 </footer>
 
 </body>
