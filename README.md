@@ -168,34 +168,11 @@ http://localhost/Market_App/
   - REST API or modern front-end framework
   - environment variables for configuration
 
-## Security Reminder
 
-This project is not production-ready as-is. To improve security before deployment, consider:
-
-- moving database credentials to environment variables
-- validating and sanitizing all user input more strictly
-- using prepared statements consistently everywhere
-- hashing and securing session management properly
-- avoiding hardcoded credentials in source files
-- restricting file upload types and sizes
-
-## Future Improvements
-
-- Add admin moderation for listings
-- Add categories and subcategories
-- Add map-based location search
-- Improve UI/UX with a modern styling system
-- Add user profile pages
-- Add messaging between buyers and sellers
-- Add pagination and sorting
-
-## License
-
-This project does not currently include a license file. If you want to publish it publicly, you may want to add one such as MIT or Apache 2.0.
 
 ## Author
 
-Market_App by hlayiseko01
+hlayiseko01
 
 ## Contributing
 
@@ -206,10 +183,3 @@ Contributions are welcome. If you want to improve the project:
 3. Commit your changes
 4. Open a pull request
 
----
-
-If you want, I can also generate:
-- a more polished README with badges and screenshots
-- a README in Afrikaans or English
-- a version tailored for GitHub with a cleaner project presentation
-- a database setup file (`database.sql`) for this app
